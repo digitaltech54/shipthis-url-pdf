@@ -91,7 +91,7 @@ app.use(async (req, res) => {
         } else {
             // await page.goto(`data:text/html, ${requestBody.content}`, {waitUntil: ['networkidle0', 'load', 'domcontentloaded', 'networkidle2']});
             await page.setContent(requestBody.content)
-            await page.waitFor(1000);
+            await page.waitFor(100);
         }
     } else {
         return res.send('type is not a valid parameter');
