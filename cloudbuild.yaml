@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build','--rm', '-t', 'gcr.io/$PROJECT_ID/shipthis-url-to-pdf:latest', '.' ]
+    # push the container image to Container Registry
+    timeout: 600s
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/shipthis-url-to-pdf:latest']
+    # Deploy container image to Cloud Run
+    timeout: 600s
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', 'shipthis-url-to-pdf', '--image', 'gcr.io/$PROJECT_ID/shipthis-url-to-pdf:latest', '--region', 'europe-west1','--platform', 'managed', '--quiet']
+    timeout: 600s
+options:
+  machineType: 'N1_HIGHCPU_32'
+images:
+  - gcr.io/$PROJECT_ID/shipthis-url-to-pdf:latest
