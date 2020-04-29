@@ -65,8 +65,6 @@ For Url
 
 app.use(async (req, res) => {
     const requestBody = req.body;
-    console.log(requestBody.content);
-
     if (!requestBody.type) {
         return res.send('Operation type not specified please provide valid params <br />' + helper);
     }
@@ -91,7 +89,8 @@ app.use(async (req, res) => {
         if (!requestBody.content) {
             return res.send('Please provide valid html content in post parameter');
         } else {
-            await page.goto(`data:text/html, <html content> <meta charset="utf-8">${requestBody.content}</html>`, {waitUntil: ['networkidle0', 'load', 'domcontentloaded', 'networkidle2']});
+            // await page.goto(`data:text/html, ${requestBody.content}`, {waitUntil: ['networkidle0', 'load', 'domcontentloaded', 'networkidle2']});
+            await page.setContent(requestBody.content)
             await page.waitFor(1000);
         }
     } else {
@@ -145,7 +144,6 @@ app.use(async (req, res) => {
 
     const pdfBuffer = await page.pdf(pdfOptions);
     browser.close();
-    console.log(pdfBuffer);
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
 });
