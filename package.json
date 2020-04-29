@@ -1,0 +1,43 @@
+{
+  "name": "shipthis-url-to-pdf",
+  "engines": {
+    "node": "12.x"
+  },
+  "version": "1.0.0",
+  "description": "Shipthis url to pdf in Node.js on Google App Engine.",
+  "scripts": {
+    "start": "node app.js",
+    "system-test": "repo-tools test app",
+    "unit-test": "ava --verbose test/*.test.js",
+    "lint": "repo-tools lint",
+    "pretest": "npm run lint",
+    "test": "npm run unit-test && npm run system-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+  },
+  "author": {
+    "name": "Google LLC"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "puppeteer": "^3.0.2"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^3.3.0",
+    "ava": "^3.8.1",
+    "semistandard": "^14.2.0"
+  },
+  "cloud-repo-tools": {
+    "test": {
+      "app": {
+        "msg": "Please provide URL"
+      }
+    },
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}
