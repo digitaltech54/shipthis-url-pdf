@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:12.16.1
+FROM mhart/alpine-node:12.16.3
 MAINTAINER Mayur Rawte "mayur@shipthis.co"
 COPY . /app
 WORKDIR /app
