@@ -123,21 +123,21 @@ app.use(async (req, res) => {
         }
 
         // set margin
-        if (requestBody.pdf.margin) {
-            pdfOptions['margin'] = {};
-            if (requestBody.pdf.margin.top) {
-                pdfOptions['margin']['top'] = requestBody.pdf.margin.top;
-            }
-            if (requestBody.pdf.margin.bottom) {
-                pdfOptions['margin']['bottom'] = requestBody.pdf.margin.bottom;
-            }
-            if (requestBody.pdf.margin.left) {
-                pdfOptions['margin']['left'] = requestBody.pdf.margin.left;
-            }
-            if (requestBody.pdf.margin.right) {
-                pdfOptions['margin']['right'] = requestBody.pdf.margin.right;
-            }
-        }
+//         if (requestBody.pdf.margin) {
+//             pdfOptions['margin'] = {};
+//             if (requestBody.pdf.margin.top) {
+//                 pdfOptions['margin']['top'] = requestBody.pdf.margin.top;
+//             }
+//             if (requestBody.pdf.margin.bottom) {
+//                 pdfOptions['margin']['bottom'] = requestBody.pdf.margin.bottom;
+//             }
+//             if (requestBody.pdf.margin.left) {
+//                 pdfOptions['margin']['left'] = requestBody.pdf.margin.left;
+//             }
+//             if (requestBody.pdf.margin.right) {
+//                 pdfOptions['margin']['right'] = requestBody.pdf.margin.right;
+//             }
+//         }
 
     }
 
