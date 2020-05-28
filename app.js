@@ -102,17 +102,17 @@ app.use(async (req, res) => {
         if (requestBody.pdf.orientation) {
             pdfOptions['landscape'] = requestBody.pdf.orientation === 'landscape';
         }
-        if (requestBody.pdf.width) {
-            pdfOptions['width'] = requestBody.pdf.width;
-        }
-        if (requestBody.pdf.height) {
-            pdfOptions['height'] = requestBody.pdf.height;
-        }
+//         if (requestBody.pdf.width) {
+//             pdfOptions['width'] = requestBody.pdf.width;
+//         }
+//         if (requestBody.pdf.height) {
+//             pdfOptions['height'] = requestBody.pdf.height;
+//         }
 
-        if (requestBody.pdf.printBackground) {
-            //default false
-            pdfOptions['printBackground'] = requestBody.pdf.printBackground;
-        }
+//         if (requestBody.pdf.printBackground) {
+//             //default false
+//             pdfOptions['printBackground'] = requestBody.pdf.printBackground;
+//         }
 
 
         // page format
