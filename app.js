@@ -98,10 +98,10 @@ app.use(async (req, res) => {
     }
 
     const pdfOptions = {};
-    if (requestBody.pdf) {
-        if (requestBody.pdf.orientation) {
-            pdfOptions['landscape'] = requestBody.pdf.orientation === 'landscape';
-        }
+//     if (requestBody.pdf) {
+// //         if (requestBody.pdf.orientation) {
+// //             pdfOptions['landscape'] = requestBody.pdf.orientation === 'landscape';
+// //         }
 //         if (requestBody.pdf.width) {
 //             pdfOptions['width'] = requestBody.pdf.width;
 //         }
@@ -115,34 +115,34 @@ app.use(async (req, res) => {
 //         }
 
 
-        // page format
+//         // page format
 
-        if (requestBody.pdf.format) {
-            // Letter is default | A4
-            pdfOptions['format'] = requestBody.pdf.format;
-        }
+//         if (requestBody.pdf.format) {
+//             // Letter is default | A4
+//             pdfOptions['format'] = requestBody.pdf.format;
+//         }
 
-//         set margin
-        if (requestBody.pdf.margin) {
-            pdfOptions['margin'] = {};
-            if (requestBody.pdf.margin.top) {
-                pdfOptions['margin']['top'] = requestBody.pdf.margin.top;
-            }
-            if (requestBody.pdf.margin.bottom) {
-                pdfOptions['margin']['bottom'] = requestBody.pdf.margin.bottom;
-            }
-            if (requestBody.pdf.margin.left) {
-                pdfOptions['margin']['left'] = requestBody.pdf.margin.left;
-            }
-            if (requestBody.pdf.margin.right) {
-                pdfOptions['margin']['right'] = requestBody.pdf.margin.right;
-            }
-        }
+// //         set margin
+//         if (requestBody.pdf.margin) {
+//             pdfOptions['margin'] = {};
+//             if (requestBody.pdf.margin.top) {
+//                 pdfOptions['margin']['top'] = requestBody.pdf.margin.top;
+//             }
+//             if (requestBody.pdf.margin.bottom) {
+//                 pdfOptions['margin']['bottom'] = requestBody.pdf.margin.bottom;
+//             }
+//             if (requestBody.pdf.margin.left) {
+//                 pdfOptions['margin']['left'] = requestBody.pdf.margin.left;
+//             }
+//             if (requestBody.pdf.margin.right) {
+//                 pdfOptions['margin']['right'] = requestBody.pdf.margin.right;
+//             }
+//         }
 
-    }
+//     }
 
 
-    const pdfBuffer = await page.pdf(pdfOptions);
+    const pdfBuffer = await page.pdf();
     browser.close();
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
