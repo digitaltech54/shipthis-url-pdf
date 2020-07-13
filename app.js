@@ -91,7 +91,7 @@ app.use(async (req, res) => {
         } else {
             // await page.goto(`data:text/html, ${requestBody.content}`, {waitUntil: ['networkidle0', 'load', 'domcontentloaded', 'networkidle2']});
             await page.setContent(requestBody.content)
-            await page.waitFor(100);
+            await page.waitFor(1000);
         }
     } else {
         return res.send('type is not a valid parameter');
@@ -102,17 +102,18 @@ app.use(async (req, res) => {
 // //         if (requestBody.pdf.orientation) {
 // //             pdfOptions['landscape'] = requestBody.pdf.orientation === 'landscape';
 // //         }
-//         if (requestBody.pdf.width) {
-//             pdfOptions['width'] = requestBody.pdf.width;
-//         }
-//         if (requestBody.pdf.height) {
-//             pdfOptions['height'] = requestBody.pdf.height;
-//         }
+        if (requestBody.pdf.width) {
+            pdfOptions['width'] = requestBody.pdf.width;
+        }
+        if (requestBody.pdf.height) {
+            pdfOptions['height'] = requestBody.pdf.height;
+        }
 
-//         if (requestBody.pdf.printBackground) {
-//             //default false
-//             pdfOptions['printBackground'] = requestBody.pdf.printBackground;
-//         }
+    pdfOptions['printBackground'] =true;
+        // if (requestBody.pdf.printBackground) {
+        //     //default false
+        //     pdfOptions['printBackground'] = requestBody.pdf.printBackground ;
+        // }
 
 
 //         // page format
@@ -123,26 +124,23 @@ app.use(async (req, res) => {
 //         }
 
 // //         set margin
-//         if (requestBody.pdf.margin) {
-//             pdfOptions['margin'] = {};
-//             if (requestBody.pdf.margin.top) {
-//                 pdfOptions['margin']['top'] = requestBody.pdf.margin.top;
-//             }
-//             if (requestBody.pdf.margin.bottom) {
-//                 pdfOptions['margin']['bottom'] = requestBody.pdf.margin.bottom;
-//             }
-//             if (requestBody.pdf.margin.left) {
-//                 pdfOptions['margin']['left'] = requestBody.pdf.margin.left;
-//             }
-//             if (requestBody.pdf.margin.right) {
-//                 pdfOptions['margin']['right'] = requestBody.pdf.margin.right;
-//             }
-//         }
-
+//     if (requestBody.pdf.margin) {
+//         pdfOptions['margin'] = {};
+//         pdfOptions['margin']['top'] = requestBody.pdf.margin.top || '20px';
+//         pdfOptions['margin']['bottom'] = requestBody.pdf.margin.bottom || '20px';
+//         pdfOptions['margin']['left'] = requestBody.pdf.margin.left || '20px';
+//         pdfOptions['margin']['right'] = requestBody.pdf.margin.right || '20px';
+//     } else {
+//         pdfOptions['margin'] = {};
+//         pdfOptions['margin']['top'] = '0';
+//         pdfOptions['margin']['bottom'] = '0';
+//         pdfOptions['margin']['left'] = '0';
+//         pdfOptions['margin']['right'] = '0';
+//
 //     }
 
-
-    const pdfBuffer = await page.pdf();
+//     }
+    const pdfBuffer = await page.pdf(pdfOptions);
     browser.close();
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
